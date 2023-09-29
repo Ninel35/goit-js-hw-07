@@ -3,9 +3,7 @@ import { galleryItems } from './gallery-items.js';
 
 const listUl = document.querySelector(".gallery");
 
-const markup = galleryItems.map(
-    (elem, indx, arr) => {
-        return ` <li class="gallery__item">
+const markup = galleryItems.map(elem => ` <li class="gallery__item">
   <a class="gallery__link" href="${elem.original}">
     <img
       class="gallery__image"
@@ -14,16 +12,14 @@ const markup = galleryItems.map(
       alt="${elem.description}"
     />
  </a>
-</li>`
-    }
-).join("");
+</li>`).join("");
 listUl.insertAdjacentHTML("afterbegin", markup);
 
 listUl.addEventListener("click", selectImg);
 
 function selectImg(evt) {
     evt.preventDefault();
-    if (evt.target === evt.currentTarget) { return };
+    if (evt.target === evt.currentTarget)  return;
 
 const instance = basicLightbox.create(`
     <img src= '${evt.target.dataset.source}'>
@@ -37,8 +33,4 @@ const instance = basicLightbox.create(`
    instance.close(); 
 });    
 }
-
-
-
-
 console.log(galleryItems);
